@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧊 Brocool Shop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      color: #fff;
+      min-height: 100vh;
+      padding: 30px 10px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+      animation: fadeIn 1.2s ease-in;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-content: center;
+      padding: 10px;
+      animation: fadeIn 1.2s ease-in;
+    }
+    .product {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: transform 0.4s;
+    }
+    .product:hover img {
+      transform: scale(1.05);
+    }
+    h3 {
+      margin: 5px 0;
+    }
+    p {
+      font-weight: 500;
+      color: #ffdf6b;
+      margin-bottom: 10px;
+    }
+    button {
+      background: linear-gradient(135deg, #00ffcc, #0099ff);
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #00cc99, #0077cc);
+      transform: scale(1.05);
+    }
+    #orderForm {
+      display: none;
+      background: rgba(0,0,0,0.7);
+      padding: 25px;
+      border-radius: 16px;
+      margin-top: 25px;
+      animation: fadeIn 0.8s ease-in;
+    }
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      width: 80%;
+      margin: 6px 0;
+      text-align: center;
+      font-size: 15px;
+    }
+    #cartItems p {
+      text-align: left;
+      padding-left: 20px;
+    }
+    #totalPrice {
+      font-size: 1.3rem;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛍️ Welcome to Brocool Store</h1>
+  <div id="productList" class="product-container"></div>
+
+  <div id="orderForm">
+    <h2>Your Cart 🛒</h2>
+    <div id="cartItems"></div>
+    <h3 id="totalPrice">Total: ₹0</h3>
+
+    <h2>Enter Your Details</h2>
+    <input type="text" id="buyerName" placeholder="Your Name"><br>
+    <input type="text" id="buyerPhone" placeholder="Your Mobile Number"><br>
+    <input type="text" id="buyerAddress" placeholder="Your Address"><br>
+    <button onclick="sendWhatsAppOrder()">📱 Send on WhatsApp</button>
+    <button onclick="cancelOrder()">❌ Clear Cart</button><br><br>
+    <button onclick="closeForm()">🔙 Back to Shop</button>
+  </div>
+
+  <footer>© 2025 Brocool.in | Designed with 💙 by Pravin</footer>
+
+  <script>
+    let cart = [];
+    const productList = document.getElementById("productList");
+    const cartItems = document.getElementById("cartItems");
+    const totalPriceEl = document.getElementById("totalPrice");
+    const products = JSON.parse(localStorage.getItem("brocoolProducts")) || [];
+
+    function renderProducts() {
+      productList.innerHTML = "";
+      products.forEach((p, i) => {
+        productList.innerHTML += `
+          <div class="product">
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>₹${p.price}</p>
+            <button onclick="addToCart(${i})">Add to Cart</button>
+          </div>`;
+      });
+    }
+
+    function addToCart(index) {
+      cart.push(products[index]);
+      updateCart();
+      document.getElementById("orderForm").style.display = "block";
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+
+    function updateCart() {
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += Number(item.price);
+        cartItems.innerHTML += `<p>${i + 1}. ${item.name} - ₹${item.price}</p>`;
+      });
+      totalPriceEl.textContent = "Total: ₹" + total;
+    }
+
+    function closeForm() {
+      document.getElementById("orderForm").style.display = "none";
+    }
+
+    function sendWhatsAppOrder() {
+      const name = document.getElementById("buyerName").value;
+      const phone = document.getElementById("buyerPhone").value;
+      const address = document.getElementById("buyerAddress").value;
+
+      if (!name || !phone || !address) return alert("Please fill all fields!");
+
+      let orderList = cart.map((c, i) => `${i + 1}. ${c.name} - ₹${c.price}`).join("%0A");
+      let total = cart.reduce((sum, c) => sum + Number(c.price), 0);
+
+      const message = `Hello Brocool! 👋%0A
+New Order Details:%0A
+${orderList}%0A
+--------------------%0A
+*Total: ₹${total}*%0A
+--------------------%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Address: ${address}`;
+
+      const sellerPhone = "918459966421";
+      const url = `https://wa.me/${sellerPhone}?text=${message}`;
+      window.open(url, "_blank");
+    }
+
+    function cancelOrder() {
+      cart = [];
+      updateCart();
+      alert("Your cart has been cleared!");
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
