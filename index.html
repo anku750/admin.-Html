@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -6,10 +6,14 @@
 <title>Brocool.in — स्मार्ट टिप्स और जानकारी</title>
 <meta name="description" content="Brocool — रोजाना मोबाइल टिप्स, होम हैक्स, DIY प्रोजेक्ट्स और कमाई के आसान तरीके। सभी जानकारी हिंदी में।" />
 <meta name="keywords" content="मोबाइल टिप्स, होम हैक्स, DIY, कमाई के तरीके, Brocool" />
+<meta name="google-adsense-account" content="ca-pub-4319423225607012">
 <style>
 :root {
-    --primary1: #ff4b2b;
-    --primary2: #ff416c;
+    --primary1: #1e3c72;
+    --primary2: #2a5298;
+    --primary3: #6dd5ed;
+    --primary4: #2193b0;
+    --primary5: #00c6ff;
     --bg: #f9f9f9;
     --card: #ffffff;
     --text: #000000;
@@ -19,15 +23,89 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
 body { background: var(--bg); color: var(--text); }
 header { 
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; 
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3') center/cover no-repeat; 
     color: #fff; 
     padding: 40px 20px; 
     text-align: center; 
 }
 header .logo { font-size: 32px; font-weight: 800; }
-nav { background: #fff; padding: 15px; display: flex; justify-content: center; gap: 15px; position: sticky; top: 0; box-shadow: 0 3px 10px rgba(0,0,0,.1); z-index: 50; }
-nav a { text-decoration: none; color: var(--text); font-weight: 600; }
+nav { 
+    background: #fff; 
+    padding: 15px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    position: sticky; 
+    top: 0; 
+    box-shadow: 0 3px 10px rgba(0,0,0,.1); 
+    z-index: 50; 
+}
+
+/* Moving Gradient Button Design */
+nav a { 
+    text-decoration: none; 
+    color: #fff; 
+    font-weight: 600; 
+    padding: 12px 25px;
+    border-radius: 25px; 
+    transition: all 0.3s ease; 
+    position: relative; 
+    overflow: hidden; 
+    background: linear-gradient(135deg, 
+        #ff6b6b, #ffa726, #ffee58, #4caf50, 
+        #2196f3, #9c27b0, #ff6b6b);
+    background-size: 400% 400%;
+    animation: movingGradient 8s ease infinite;
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    min-width: 140px;
+}
+
+@keyframes movingGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+nav a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    animation-duration: 4s;
+}
+
+nav a:active {
+    transform: translateY(-1px);
+}
+
+/* Read Button with Moving Gradient */
+.read-btn { 
+    display: inline-block; 
+    margin-top: 10px; 
+    padding: 10px 20px; 
+    background: linear-gradient(135deg, 
+        #ff6b6b, #ffa726, #ffee58, #4caf50, 
+        #2196f3, #9c27b0, #ff6b6b);
+    background-size: 400% 400%;
+    animation: movingGradient 8s ease infinite;
+    color: #fff; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+    transition: all 0.3s ease;
+}
+
+.read-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.3);
+    animation-duration: 4s;
+}
+
 .container { max-width: var(--maxw); margin: 30px auto; padding: 0 20px; }
 .posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
 .post-card { background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.05); transition: transform 0.25s; cursor: pointer; }
@@ -36,56 +114,44 @@ nav a { text-decoration: none; color: var(--text); font-weight: 600; }
 .post-content { padding: 15px; }
 .post-content h3 { font-size: 20px; margin-bottom: 10px; color: var(--primary2); }
 .post-content p { color: var(--muted); line-height: 1.6; }
-.read-btn { display: inline-block; margin-top: 10px; padding: 8px 15px; background: linear-gradient(90deg, var(--primary2), var(--primary1)); color: #fff; border-radius: 8px; text-decoration: none; }
 .full-post { display: none; background: var(--card); padding: 25px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.08); margin-top: 25px; }
 .full-post.active { display: block; }
 .full-post img { width: 100%; height: 350px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
 .full-post h1 { margin-bottom: 15px; color: var(--primary1); }
 .full-post p { margin-bottom: 15px; line-height: 1.7; color: var(--text); }
-
-/* Content Images Styling */
-.content-images {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-.content-images img {
-    flex: 1;
-    min-width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* Adsense Styling */
-.ad-container {
-    margin: 25px 0;
-    text-align: center;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 8px;
-}
-.ad-label {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
+.content-images { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+.content-images img { flex: 1; min-width: 200px; height: 150px; object-fit: cover; border-radius: 8px; }
+.ad-container { margin: 25px 0; text-align: center; padding: 15px; background: #f5f5f5; border-radius: 8px; }
+.ad-label { font-size: 12px; color: #666; margin-bottom: 5px; text-transform: uppercase; }
 footer { text-align: center; padding: 20px; background: #111; color: #fff; margin-top: 40px; border-top: 4px solid rgba(255,255,255,.1); }
+
 @media(max-width: 640px) { 
     .post-card img { height: 150px; } 
     .full-post img { height: 220px; } 
     header .logo { font-size: 26px; } 
-    .content-images img {
-        min-width: 100%;
+    .content-images img { min-width: 100%; }
+    nav { flex-wrap: colam; gap: 2px; }
+    nav a { 
+        padding: 7px 6px; 
+        font-size: 10px; 
+        min-width: 90px;
+        animation: movingGradient 6s ease infinite;
+    }
+    .read-btn {
+        animation: movingGradient 6s ease infinite;
+    }
+}
+
+/* Additional animation for better performance */
+@media (prefers-reduced-motion: reduce) {
+    nav a, .read-btn {
+        animation: none;
+        background: linear-gradient(135deg, #2196f3, #9c27b0);
     }
 }
 </style>
 </head>
 <body>
-<!-- Google Adsense Code -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4319423225607012"
      crossorigin="anonymous"></script>
 
@@ -124,143 +190,124 @@ footer { text-align: center; padding: 20px; background: #111; color: #fff; margi
 </article>
 </div>
 
-<!-- Adsense Ad after posts -->
 <div class="ad-container">
     <div class="ad-label">विज्ञापन</div>
-    <!-- Ad unit will be inserted here by Adsense -->
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-4319423225607012"
          data-ad-slot="1234567890"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<!-- Full Posts -->
+<!-- Post 1 -->
 <section id="post1" class="full-post">
 <h1>मोबाइल की बैटरी बचाने के 10 आसान उपाय</h1>
 <img src="https://source.unsplash.com/800x400/?mobile,battery" alt="बैटरी बचाएं">
 
-<!-- Adsense Ad in post -->
 <div class="ad-container">
-    <div class="ad-label">विज्ञापन</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4319423225607012"
-         data-ad-slot="0987654321"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<div class="ad-label">विज्ञापन</div>
+<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-4319423225607012"
+    data-ad-slot="0987654321"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<p>मोबाइल की बैटरी तेजी से खत्म होने की समस्या आम है। बैकग्राउंड ऐप्स बंद करना, स्क्रीन ब्राइटनेस कम करना, और डार्क मोड का उपयोग करना कुछ सरल उपाय हैं। इसके अलावा, ऑटो-सिंक को नियंत्रित करें और केवल आवश्यक ऐप्स का उपयोग करें। चार्जिंग के लिए उच्च गुणवत्ता के केबल और चार्जर का प्रयोग करें।</p>
+<p>आज के स्मार्टफोन में बैटरी जल्दी खत्म होना आम समस्या है। इसे कम करने के लिए ये उपाय अपनाएँ:</p>
+<ul>
+<li><strong>बैकग्राउंड ऐप्स बंद करें:</strong> जिन ऐप्स का इस्तेमाल नहीं हो रहा है, उन्हें बंद रखें।</li>
+<li><strong>स्क्रीन ब्राइटनेस कम करें:</strong> ऑटो ब्राइटनेस या मैनुअल कम करें।</li>
+<li><strong>डार्क मोड:</strong> OLED/AMOLED स्क्रीन वाले फोन में डार्क मोड लगाएँ।</li>
+<li><strong>ऑटो-सिंक:</strong> ईमेल और सोशल मीडिया की ऑटो-सिंक को कंट्रोल करें।</li>
+<li><strong>नोटिफिकेशन:</strong> अनावश्यक नोटिफिकेशन बंद करें।</li>
+<li><strong>लो पावर मोड:</strong> बैटरी सेवर मोड ऑन करें।</li>
+<li><strong>चार्जिंग:</strong> गुणवत्ता वाले चार्जर और केबल का उपयोग करें।</li>
+<li><strong>एप्लिकेशन अपडेट:</strong> ऐप्स को लेटेस्ट वर्शन में अपडेट रखें।</li>
+<li><strong>स्थान और ब्लूटूथ:</strong> GPS, Bluetooth केवल जरूरत पड़ने पर ऑन करें।</li>
+<li><strong>रात में चार्जिंग:</strong> स्मार्ट चार्जिंग और बैटरी सेविंग मोड ऑन रखें।</li>
+</ul>
+
+<p>इन उपायों से बैटरी की लाइफ बढ़ती है और फोन लंबे समय तक बेहतर चलता है।</p>
 
 <div class="content-images">
-    <img src="https://source.unsplash.com/300x200/?smartphone,charging" alt="मोबाइल चार्जिंग">
-    <img src="https://source.unsplash.com/300x200/?mobile,settings" alt="मोबाइल सेटिंग्स">
-    <img src="https://source.unsplash.com/300x200/?battery,saving" alt="बैटरी सेविंग">
+<img src="https://source.unsplash.com/300x200/?smartphone,charging" alt="मोबाइल चार्जिंग">
+<img src="https://source.unsplash.com/300x200/?mobile,settings" alt="मोबाइल सेटिंग्स">
+<img src="https://source.unsplash.com/300x200/?battery,saving" alt="बैटरी सेविंग">
 </div>
-
-<p>अगर आप इन उपायों को अपनाते हैं, तो आपका फोन लंबे समय तक बिना चार्ज के चलेगा। बैटरी से संबंधित सेटिंग्स को नियमित रूप से जांचना भी फायदेमंद है।</p>
-
-<!-- Another Adsense Ad in post -->
-<div class="ad-container">
-    <div class="ad-label">विज्ञापन</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4319423225607012"
-         data-ad-slot="1122334455"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
-
-<p>रात में बैटरी सेविंग मोड ऑन करें और अनावश्यक नोटिफिकेशन बंद करें। इन तरीकों से न केवल बैटरी बचती है, बल्कि फोन की लाइफ भी लंबी होती है।</p>
 
 <a class="read-btn" href="#" onclick="closePost()">वापस जाएँ</a>
 </section>
 
+<!-- Post 2 -->
 <section id="post2" class="full-post">
 <h1>घर के 5 आसान और उपयोगी हैक्स</h1>
 <img src="https://source.unsplash.com/800x400/?home,cleaning" alt="होम हैक्स">
 
-<!-- Adsense Ad in post -->
 <div class="ad-container">
-    <div class="ad-label">विज्ञापन</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4319423225607012"
-         data-ad-slot="5544332211"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<div class="ad-label">विज्ञापन</div>
+<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-4319423225607012"
+    data-ad-slot="5544332211"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<p>घर के काम स्मार्ट तरीके से करने के लिए ये 5 उपाय बेहद उपयोगी हैं। पहले, बेकिंग सोडा और सिरके से जिद्दी दाग हटाएं। दूसरे, फ्रिज में कॉफी पाउडर रखकर गंध दूर करें। तीसरे, कपड़े जल्दी सुखाने के लिए अतिरिक्त स्पिन का उपयोग करें।</p>
+<p>घर को व्यवस्थित और साफ-सुथरा रखने के आसान उपाय:</p>
+<ul>
+<li>बेकिंग सोडा और सिरके से जिद्दी दाग हटाएँ।</li>
+<li>फ्रिज में कॉफी पाउडर रखकर गंध दूर करें।</li>
+<li>कपड़े जल्दी सुखाने के लिए अतिरिक्त स्पिन का उपयोग करें।</li>
+<li>बाथरूम शीशे पर टूथपेस्ट हल्का लगाएँ।</li>
+<li>रसायन मुक्त घरेलू उपायों से कीट नियंत्रण करें।</li>
+</ul>
 
 <div class="content-images">
-    <img src="https://source.unsplash.com/300x200/?kitchen,cleaning" alt="रसोई सफाई">
-    <img src="https://source.unsplash.com/300x200/?home,organization" alt="घर व्यवस्था">
-    <img src="https://source.unsplash.com/300x200/?diy,home" alt="DIY घरेलू उपाय">
+<img src="https://source.unsplash.com/300x200/?kitchen,cleaning" alt="रसोई सफाई">
+<img src="https://source.unsplash.com/300x200/?home,organization" alt="घर व्यवस्था">
+<img src="https://source.unsplash.com/300x200/?diy,home" alt="DIY घरेलू उपाय">
 </div>
-
-<p>चौथा, बाथरूम के शीशे पर धुंध कम करने के लिए टूथपेस्ट का हल्का लेयर लगाएं। पांचवा, रसायन मुक्त घरेलू उपायों से कॉकरोच को दूर रखें। ये सभी उपाय आसान, सुरक्षित और समय-बचाने वाले हैं।</p>
 
 <a class="read-btn" href="#" onclick="closePost()">वापस जाएँ</a>
 </section>
 
+<!-- Post 3 -->
 <section id="post3" class="full-post">
 <h1>घर बैठे कमाई के 7 बेहतरीन तरीके</h1>
 <img src="https://source.unsplash.com/800x400/?earning,money" alt="कमाई के तरीके">
 
-<!-- Adsense Ad in post -->
 <div class="ad-container">
-    <div class="ad-label">विज्ञापन</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4319423225607012"
-         data-ad-slot="6677889900"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<div class="ad-label">विज्ञापन</div>
+<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-4319423225607012"
+    data-ad-slot="6677889900"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<p>फ्रीलांसिंग, डेटा एंट्री, वॉइस ओवर, और सोशल मीडिया मैनेजमेंट जैसे छोटे काम से आप घर बैठे अच्छी कमाई कर सकते हैं। यह न केवल समय बचाता है बल्कि निवेश भी कम होता है।</p>
+<p>घर बैठे पैसे कमाने के स्मार्ट तरीके:</p>
+<ul>
+<li>फ्रीलांसिंग — कंटेंट राइटिंग, ग्राफिक डिजाइन, वेब डेवलपमेंट।</li>
+<li>डेटा एंट्री और वॉइस ओवर काम।</li>
+<li>सोशल मीडिया मैनेजमेंट और डिजिटल मार्केटिंग।</li>
+<li>लोकल ड्रॉपशिपिंग और ऑनलाइन बिक्री।</li>
+<li>माइक्रोटास्क प्लेटफॉर्म्स पर छोटे प्रोजेक्ट्स।</li>
+<li>ऑनलाइन सर्वे और समीक्षा लिखना।</li>
+<li>कस्टम डिज़ाइन और DIY प्रोडक्ट्स ऑनलाइन बेचें।</li>
+</ul>
 
 <div class="content-images">
-    <img src="https://source.unsplash.com/300x200/?freelancing,work" alt="फ्रीलांसिंग">
-    <img src="https://source.unsplash.com/300x200/?online,business" alt="ऑनलाइन बिजनेस">
-    <img src="https://source.unsplash.com/300x200/?earning,digital" alt="डिजिटल कमाई">
+<img src="https://source.unsplash.com/300x200/?freelancing,work" alt="फ्रीलांसिंग">
+<img src="https://source.unsplash.com/300x200/?online,business" alt="ऑनलाइन बिजनेस">
+<img src="https://source.unsplash.com/300x200/?earning,digital" alt="डिजिटल कमाई">
 </div>
-
-<p>लोकल ड्रॉपशिपिंग और माइक्रोटास्क प्लेटफॉर्म्स के जरिए भी शुरुआती पैसा कमाना संभव है। शुरुआत में छोटे प्रोजेक्ट्स लें और धीरे-धीरे प्रतिष्ठा बनाएं।</p>
-
-<!-- Another Adsense Ad in post -->
-<div class="ad-container">
-    <div class="ad-label">विज्ञापन</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4319423225607012"
-         data-ad-slot="9988776655"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
-
-<p>Consistency और ग्राहक प्रतिक्रिया पर ध्यान दें। यह स्मार्ट और व्यावहारिक तरीके हैं घर से आय बढ़ाने के।</p>
 
 <a class="read-btn" href="#" onclick="closePost()">वापस जाएँ</a>
 </section>
@@ -269,6 +316,7 @@ footer { text-align: center; padding: 20px; background: #111; color: #fff; margi
 <footer>
 © 2025 Brocool.in — स्मार्ट और आसान जानकारी। सभी इमेज कॉपीराइट फ्री हैं।
 </footer>
+
 <script>
 function openPost(id){
   document.querySelectorAll('.full-post').forEach(s => s.classList.remove('active'));
@@ -282,4 +330,4 @@ function closePost(){
 function showHome(){ closePost(); }
 </script>
 </body>
-</html>
+   </html>
